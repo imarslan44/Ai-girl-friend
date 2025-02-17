@@ -23,10 +23,15 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-let history = []; // Initialize an empty history array outside the function
-
+let history = JSON.parse(localStorage.getItem("history")) || []; // Initialize an empty history array outside the function
+let count = JSON.parse(localStorage.getItem("count")) || [];
 async function runChat(prompt) {
 
+ console.log(history)
+
+//console.log(JSON.parse(localHistory)?.length)
+
+  //const newHistory = localHistory
   const chatSession = model.startChat({
     generationConfig,
     history: history, // Pass the history to the chat session
@@ -34,15 +39,30 @@ async function runChat(prompt) {
 
   const result = await chatSession.sendMessage(prompt);
   const response = result.response.text();
+ 
+
 
   // Update the history with the user's prompt and the model's response
-  history.push({ role: "user", parts: [{ text: prompt }] });  // Wrap prompt in {text: ...}
-  history.push({ role: "model", parts: [{ text: response }] }); // Wrap response in {text: ...}
-  console.log(response)
-  
-  return response;
+  console.log(history)
 
+   history.push({ role: "user", parts: [{ text: prompt }] });  // Wrap prompt in {text: ...}
+  console.log(history)
+   history.push({  role: "model", parts: [{ text: response }] }); // Wrap response in {text: ...}
+   console.log(history)
+  count.push({count: 0})
+  count.push({count: 2})
+  localStorage.setItem("count", JSON.stringify(count))
+  
+
+
+  localStorage.setItem("history", JSON.stringify(history));
+  console.log(history)
+ 
+  return response;
+  
 
 }
 
 export default runChat;
+
+

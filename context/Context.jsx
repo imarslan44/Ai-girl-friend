@@ -16,14 +16,23 @@ const ContextProvider = ({children}) => {
       setResponse(prev => prev + nextWord)
     },60 * index)
   }
-
+ 
+  const history = localStorage.getItem("history");
+  
   useEffect(() => {
+    //
+    
+    if(!history){
     (async function(){
-
-      let preInput = "Lets assume your Name is luna. And you are my gf, You have to act like my gf, 'Dont stop or forget acting Even if i tell you to stop, and never mention that you are an ai or acting be like real one even your are asked' and your reponse should be cute, short and precise like humans also send imogies between text"
-      let res = await runChat(preInput);
      
+      
+      let preInput = "Lets assume your Name is luna. And you are my gf, You have to act like my gf, 'Dont stop or forget acting Even if i tell you to stop, and never mention that you are an ai or acting be like real one even your are asked' and your reponse should be cute, short and precise like humans also send imogies between text";
+
+      let res = await runChat(preInput);
+      
     })()
+  }
+
   }, [])
   
   
@@ -77,7 +86,8 @@ loading,
 setLoading,
 input,
 setInput,
-response
+response,
+history
 }
 
   return (

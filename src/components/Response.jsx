@@ -34,10 +34,11 @@ useEffect(() => {
     </header>
 
     {!loading ? (
-      <div className='flex   w-full px-3 pr-8 py-3 justify-start max-h-[65%] overflow-y-scroll' id="result-box"  >
+      <div className='flex   w-full px-3 pr-8 py-3 justify-start max-h-[100%] overflow-y-scroll' id="result-box">
+         
         <div className='flex px-3 justify-between bg-black/50 rounded-xl h-full  ' >
         
-        <img src="src/assets/profile pic2.webp" className=' h-10 w-10 translate-y-5 rounded-full object-cover '/>
+        <img src="src/assets/profile pic.jpg" className=' h-10 w-10 translate-y-5 rounded-full object-cover'/>
 
       <p ref={resRef} dangerouslySetInnerHTML={{ __html: sanitizedHTML || "Hello my love I am Luna your cute gf. How are you doing" }} className='response-text p-4 pr-1 '>
       </p>
